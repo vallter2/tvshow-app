@@ -10,7 +10,8 @@ const routes: Routes = [
     { path: 'tv', component: TvshowsComponent },
     { path: 'tv/:id', component: SingleVideoComponent },
     { path: 'movie', component: MoviesComponent },
-    { path: 'movie/:id', component: SingleVideoComponent }
+    { path: 'movie/:id', component: SingleVideoComponent },
+    { path: '**', redirectTo: '/tv'}
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

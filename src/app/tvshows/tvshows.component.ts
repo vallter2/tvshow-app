@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieModel } from '../movies/movies.model';
-import { Service } from '../service.service';
+import { Service, ShowType } from '../service.service';
 
 @Component({
   selector: 'app-tvshows',
@@ -12,15 +11,17 @@ import { Service } from '../service.service';
 export class TvshowsComponent implements OnInit, OnDestroy {
   tvShows: MovieModel[];
   unSub: Subscription;
-  constructor(private service: Service, private router: Router) { }
-
+  constructor(private service: Service) { }
 
   ngOnInit(): void {
-    // this.service.topMovies('tv');
     this.unSub = this.service.videoData.subscribe(resp => {
       this.tvShows = resp;
     });
+    this.service.isHeader.next(true);
+    this.service.show = ShowType.TV;
+    this.service.search();
   }
+
   ngOnDestroy(): void {
     this.unSub.unsubscribe();
   }

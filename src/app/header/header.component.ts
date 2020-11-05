@@ -1,6 +1,7 @@
-import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { tap, debounceTime } from 'rxjs/operators';
 import { Service } from '../service.service';
 
 @Component({
@@ -8,39 +9,40 @@ import { Service } from '../service.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   searchForm: FormGroup;
-  show: string = 'tv';
+  header = true;
+  subscriptions: Subscription[] = [];
+
   constructor(
     private fb: FormBuilder,
-    private service: Service,
-    private location: Location) { }
+    private service: Service
+  ) { }
 
   ngOnInit(): void {
-    const link = this.location.path();
-    console.log(link);
-    if (link == '/movie') {
-      this.show = 'movie';
-      this.service.topMovies(this.show);
-    } else {
-      this.show = 'tv';
-      this.service.topMovies(this.show);
-    }
     this.searchForm = this.fb.group({
       search: ['', Validators.minLength(3)]
     });
+
+    this.subscriptions.push(this.service.isHeader.subscribe(resp => {
+       this.header = resp;
+    }));
+
+    this.subscriptions.push(this.service.searchKeywordChange.pipe(
+      debounceTime(1000),
+      tap(() => this.service.search())
+    ).subscribe());
+
+    this.search();
   }
 
   search() {
-    let keyWord = this.searchForm.get('search').value;
-    this.service.search(keyWord, this.show);
+    this.service.searchKeywordChange.next(this.searchForm.get('search').value);
   }
-  movie() {
-    this.show = 'movie';
-    this.search();
-  }
-  tv() {
-    this.show = 'tv';
-    this.search();
+
+  ngOnDestroy() {
+    for (const sub of this.subscriptions) {
+      sub.unsubscribe();
+    }
   }
 }
