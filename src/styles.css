@@ -1,1 +1,92 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: 'Open Sans';
+}
+
+.wraper {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    padding: 20px 10px;
+}
+
+a.switch-button {
+    padding: 5px 10px;
+    background: #f0efeb;
+    color: #2d3142;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a.switch-button:hover {
+    background: #99c1de;
+}
+
+a.switch-button.active {
+    background: #d6e2e9;
+}
+
+.search-bar {
+    margin: 30px 0;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px 0;
+    border: 1px solid #f0efeb;
+    border-radius: 5px;
+}
+
+.search-bar input:active,
+.search-bar input:focus {
+    border: 1px solid #d6e2e9;
+    outline: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.item {
+    width: 48%;
+    background: #f0efeb;
+    margin: 10px 1%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.item a {
+    text-decoration: none;
+}
+
+.item:hover {
+    background: #99c1de; 
+}
+
+.move-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.move-title {
+    color: #2d3142;
+    margin: 10px 10px 20px 10px;
+}
+
+
+@media (max-width: 580px) {
+    .container {
+      flex-direction: column;
+    }
+
+    .item {
+        width: 100%;
+    }
+  }

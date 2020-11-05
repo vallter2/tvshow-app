@@ -1,0 +1,14 @@
+<header>
+    <div class="wraper">
+        <div class="switcher">
+            <a routerLink="/movie" routerLinkActive="active" (click)="movie()" class="button switch-button ">Movie</a>
+            <a routerLink="/tv" routerLinkActive="active" (click)="tv()"  class="switch-button" >TV Show</a>
+        </div>
+        <div class="search-bar">
+            <form [formGroup]="searchForm">
+                <input type="text" formControlName="search" (keyup)="search()" placeholder="Search...">
+                <p *ngIf="!searchForm.valid">Please input 3 or more characters</p>
+            </form>
+        </div>
+    </div>
+</header>

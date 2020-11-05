@@ -1,0 +1,16 @@
+<html>
+<body>
+    <div class="wraper">
+        <div class="container">
+            <div *ngFor="let movie of movies" class="item">
+                <a [routerLink]="['/movie/'+movie.id]">
+                    <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"
+                        class="move-image" alt="poster">
+                    <h3 class="move-title">{{movie.title}}</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

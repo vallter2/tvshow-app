@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <header>
+        <div class="wraper">
+            <div class="switcher">
+                <a (click)='goBack()' class="switch-button">Back</a>
+            </div>
+        </div>
+    </header>
+    <ng-container *ngIf = "data">
+    <div class="wraper">
+        <img src="https://image.tmdb.org/t/p/w500/{{data.poster_path}}"
+                        class="move-image" alt="poster">
+                        <h1>{{data.original_title}}{{data.name}}</h1>
+
+                        <!-- <div class="move-info">
+                            {{data.runtime}}{{data.number_of_episodes}} | {{data.release_date}}
+                        </div> -->
+        <div class="move-content">
+                <p>{{data.overview}}</p>
+
+        </div>
+    </div>
+</ng-container>
+</body>
+
+</html>
