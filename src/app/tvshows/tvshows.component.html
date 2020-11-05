@@ -4,8 +4,10 @@
         <div class="container">
             <div *ngFor = "let tvShow of tvShows" class="item">
                 <a [routerLink]="['/tv/'+tvShow.id]">
-                    <img src="https://image.tmdb.org/t/p/w500/{{tvShow.backdrop_path}}"
-                        class="move-image" alt="poster">
+                    <div class="image">
+                        <img src="https://image.tmdb.org/t/p/w500/{{tvShow.backdrop_path}}"
+                            class="move-image" alt="poster">
+                    </div>
                     <h3 class="move-title">{{tvShow.name}}</h3>
                 </a>
             </div>

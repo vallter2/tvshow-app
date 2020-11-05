@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <body>
     <header>
         <div class="wraper">
@@ -8,21 +9,26 @@
             </div>
         </div>
     </header>
-    <ng-container *ngIf = "data">
-    <div class="wraper">
-        <img src="https://image.tmdb.org/t/p/w500/{{data.poster_path}}"
-                        class="move-image" alt="poster">
-                        <h1>{{data.original_title}}{{data.name}}</h1>
+    <ng-container *ngIf="data">
+        <div class="wraper">
+            <ng-container *ngIf="video">
+                <iframe class="move-video" width="560" height="315"
+                    [src]=trailer  frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </ng-container>
+            <img  *ngIf ="!video" src="https://image.tmdb.org/t/p/w500/{{data.poster_path}}" class="move-poster"
+                alt="poster">
+            <h1>{{data.original_title}}{{data.name}}</h1>
 
-                        <!-- <div class="move-info">
-                            {{data.runtime}}{{data.number_of_episodes}} | {{data.release_date}}
-                        </div> -->
-        <div class="move-content">
+            <div class="move-info">
+                {{data.runtime}}{{data.number_of_episodes}} | {{data.release_date}}
+            </div>
+            <div class="move-content">
                 <p>{{data.overview}}</p>
-
+            </div>
         </div>
-    </div>
-</ng-container>
+    </ng-container>
 </body>
 
 </html>
