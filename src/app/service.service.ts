@@ -11,7 +11,7 @@ export class Service {
     singleVideoData: SingleVideoModel;
     movies: MovieModel[] = [];
     // moviesData = new Subject<MovieModel[]>();
-    keyWord = new Subject<SingleVideoModel>();
+    singleData = new Subject<SingleVideoModel>();
     videoData = new BehaviorSubject<MovieModel[]>(this.movies);
     constructor(private http: HttpClient) { }
 
@@ -60,7 +60,7 @@ export class Service {
                     number_of_episodes: resp.number_of_episodes,
                     number_of_seasons: resp.number_of_seasons
                 }
-                this.keyWord.next(this.singleVideoData);
+                this.singleData.next(this.singleVideoData);
             });
     }
 }

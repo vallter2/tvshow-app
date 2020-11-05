@@ -28,7 +28,7 @@ export class SingleVideoComponent implements OnInit {
     } else {
       this.service.singleVideo('tv', this.id);
     }
-    this.service.keyWord.subscribe(resp => {
+    this.service.singleData.subscribe(resp => {
       this.data = resp;
     });
   }
